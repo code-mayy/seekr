@@ -142,11 +142,12 @@ export function useWeb3Provider(): Web3ContextType {
       
       // Handle specific error codes - check both top-level and nested error codes
       const errorCode = error.code || error.error?.code;
+      const errorMessage = error.message || error.error?.message || '';
       
       if (errorCode === 4001) {
         toast.error('Connection rejected by user.');
-      } else if (errorCode === -32002) {
-        toast.warning('MetaMask is busy processing another request. Please wait and try again.');
+      } else if (errorCode === -32002 || errorMessage.includes('Already processing eth_requestAccounts')) {
+        toast.warning('MetaMask is already processing a connection request. Please wait and try again.');
       } else if (error.reason && error.reason.includes('Already processing eth_requestAccounts')) {
         toast.warning('MetaMask is already processing a connection request. Please wait...');
       } else {
