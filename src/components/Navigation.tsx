@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, User, LogOut, Settings, Plus, Home, DollarSign, Crown, Shield } from 'lucide-react';
+import { Search, User, LogOut, Settings, Plus, Home, DollarSign, Crown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -81,25 +81,6 @@ export function Navigation({ currentView, onViewChange, onCreateListing }: Navig
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             >
               <Button
-                variant={currentView === 'escrow' ? 'default' : 'ghost'}
-                onClick={() => onViewChange('escrow')}
-                className={`luxury-button luxury-press rounded-xl px-6 py-3 ${
-                  currentView === 'escrow' 
-                    ? 'luxury-gradient-gold text-navy-900 shadow-lg' 
-                    : 'text-white hover:bg-white/10 border-0'
-                }`}
-              >
-                <Shield className="w-4 h-4 mr-2" />
-                Escrow
-              </Button>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-            >
-              <Button
                 variant={currentView === 'pricing' ? 'default' : 'ghost'}
                 onClick={() => onViewChange('pricing')}
                 className={`luxury-button luxury-press rounded-xl px-6 py-3 ${
@@ -116,7 +97,7 @@ export function Navigation({ currentView, onViewChange, onCreateListing }: Navig
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
             >
               <Button
                 variant="outline"
@@ -132,7 +113,7 @@ export function Navigation({ currentView, onViewChange, onCreateListing }: Navig
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
             >
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -171,13 +152,6 @@ export function Navigation({ currentView, onViewChange, onCreateListing }: Navig
                   >
                     <User className="mr-3 h-4 w-4" />
                     Profile
-                  </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    onClick={() => onViewChange('escrow')}
-                    className="luxury-hover cursor-pointer rounded-lg mx-2 my-1 hover:bg-gray-50"
-                  >
-                    <Shield className="mr-3 h-4 w-4" />
-                    Blockchain Escrow
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     onClick={() => onViewChange('pricing')}
