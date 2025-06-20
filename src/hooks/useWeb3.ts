@@ -108,6 +108,12 @@ export function useWeb3Provider(): Web3ContextType {
       return;
     }
 
+    // Prevent multiple concurrent connection attempts
+    if (isConnecting) {
+      toast.warning('Connection already in progress. Please wait...');
+      return;
+    }
+
     setIsConnecting(true);
     try {
       const provider = new ethers.BrowserProvider(window.ethereum);
@@ -133,8 +139,14 @@ export function useWeb3Provider(): Web3ContextType {
       }
     } catch (error: any) {
       console.error('Error connecting wallet:', error);
+      
+      // Handle specific error codes
       if (error.code === 4001) {
         toast.error('Connection rejected by user.');
+      } else if (error.code === -32002) {
+        toast.warning('MetaMask is busy processing another request. Please wait and try again.');
+      } else if (error.reason && error.reason.includes('Already processing eth_requestAccounts')) {
+        toast.warning('MetaMask is already processing a connection request. Please wait...');
       } else {
         toast.error('Failed to connect wallet. Please try again.');
       }
