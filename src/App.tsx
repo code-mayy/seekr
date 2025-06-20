@@ -10,6 +10,7 @@ import { Homepage } from '@/components/Homepage';
 import { UserProfile } from '@/components/UserProfile';
 import { Navigation } from '@/components/Navigation';
 import { PricingPage } from '@/components/PricingPage';
+import { EscrowPage } from '@/components/EscrowPage';
 import { ListRequestForm } from '@/components/ListRequestForm';
 import { SplashedPushNotifications } from '@/components/ui/splashed-push-notifications';
 import { useAuth } from '@/hooks/useAuth';
@@ -18,7 +19,7 @@ import { useNotifications } from '@/hooks/useNotifications';
 function AppContent() {
   const { user, loading } = useAuth();
   const { notificationRef } = useNotifications();
-  const [currentView, setCurrentView] = useState<'homepage' | 'profile' | 'pricing'>('homepage');
+  const [currentView, setCurrentView] = useState<'homepage' | 'profile' | 'pricing' | 'escrow'>('homepage');
   const [showListForm, setShowListForm] = useState(false);
 
   if (loading) {
@@ -58,6 +59,7 @@ function AppContent() {
       {currentView === 'homepage' && <Homepage />}
       {currentView === 'profile' && <UserProfile />}
       {currentView === 'pricing' && <PricingPage onBack={() => setCurrentView('homepage')} />}
+      {currentView === 'escrow' && <EscrowPage onBack={() => setCurrentView('homepage')} />}
       
       <ListRequestForm
         isOpen={showListForm}

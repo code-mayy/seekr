@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, User, LogOut, Settings, Plus, Home, DollarSign, Crown } from 'lucide-react';
+import { Search, User, LogOut, Settings, Plus, Home, DollarSign, Crown, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -152,6 +152,13 @@ export function Navigation({ currentView, onViewChange, onCreateListing }: Navig
                   >
                     <User className="mr-3 h-4 w-4" />
                     Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => onViewChange('escrow')}
+                    className="luxury-hover cursor-pointer rounded-lg mx-2 my-1 hover:bg-gray-50"
+                  >
+                    <Shield className="mr-3 h-4 w-4" />
+                    Blockchain Escrow
                   </DropdownMenuItem>
                   <DropdownMenuItem 
                     onClick={() => onViewChange('pricing')}
